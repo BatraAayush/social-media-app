@@ -1,0 +1,20 @@
+.login-container{
+    margin: auto;
+    text-align: center;
+    width: max-content;
+}
+
+.login-container input{
+    display: block;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.login-container button{
+    display: block;
+    width: 80%;
+}
+
+.login-container .form{
+    text-align: left;
+}
