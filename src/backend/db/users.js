@@ -1,18 +1,116 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
-/**
- * User Database can be added here.
- * You can add default users of your wish with different attributes
- * */
+
 
 export const users = [
-  {
-    _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
-    username: "adarshbalika",
-    password: "adarshBalika123",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
+    {
+        _id: "t7cZfWIq-a",
+        firstName: "Aayush",
+        lastName: "Batra",
+        username: "aayushbatra",
+        password: "aayushbatra123",
+        bio: "Frontend Developer",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-01T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "t7cZfWIp-q",
+        firstName: "Alice",
+        lastName: "Smith",
+        username: "alicesmith",
+        password: "aliceSmith123",
+        bio: "Be yourself!",
+        bookmarks: [],
+        avatarUrl:
+            "https://res.cloudinary.com/ddfyxmlhe/image/upload/v1686987696/SnapSquad/profile-images/alice-smith_nzzktx.jpg",
+        website: "https://example.com/",
+        createdAt: "2023-01-01T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "79Gksh9otl",
+        firstName: "Bob",
+        lastName: "Johnson",
+        username: "bobjohnson",
+        password: "bobJohnson123",
+        bio: "Hello World",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-02T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "1T6Be1QpLm",
+        firstName: "Carol",
+        lastName: "Williams",
+        username: "carolwilliams",
+        password: "carolWilliams123",
+        bio: "What's in bio?",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-01T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "LCrc9f0Zl0",
+        firstName: "David",
+        lastName: "Brown",
+        username: "davidbrown",
+        password: "davidBrown123",
+        bio: "Passionate software engineer. Solving complex problems with clean code",
+        avatarUrl:
+            "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2ZpbGUlMjBwaWN0dXJlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-03T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "o5gzWjEeX_",
+        firstName: "Emma",
+        lastName: "Davis",
+        username: "emmadavis",
+        password: "emmaDavis123",
+        bio: "Data-driven analyst. Uncovering insights for informed decision-making.",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1605993439219-9d09d2020fa5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2ZpbGUlMjBwaWN0dXJlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-04T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "M1NR81Bzlz",
+        firstName: "Frank",
+        lastName: "Wilson",
+        username: "frankwilson",
+        password: "frankWilson123",
+        bio: "HR professional. Creating inclusive workplaces for growth.",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByb2ZpbGUlMjBwaWN0dXJlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        website: "https://example.com/",
+        createdAt: "2023-01-05T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
+    {
+        _id: "qq8zWjEeXd",
+        firstName: "Grace",
+        lastName: "Martinez",
+        username: "gracemartinez",
+        password: "graceMartinez123",
+        bio: "Frontend Engineer",
+        bookmarks: [],
+        avatarUrl:
+            "https://images.unsplash.com/photo-1627748868900-f2decee603e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fHByb2ZpbGUlMjBwaWN0dXJlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        website: "",
+        createdAt: "2023-01-06T10:55:06+05:30",
+        updatedAt: formatDate(),
+    },
 ];

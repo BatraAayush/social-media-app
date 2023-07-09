@@ -8,6 +8,10 @@
     display: block;
     width: 80%;
     box-sizing: border-box;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--light-grey);
+    border-radius: .3rem;
 }
 
 .login-container button{
@@ -17,4 +21,18 @@
 
 .login-container .form{
     text-align: left;
+}
+
+.login-container button{
+    background-color: var(--black);
+    color: var(--white);
+    margin-bottom: 1rem;
+    padding: .5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: var(--blue);
 }

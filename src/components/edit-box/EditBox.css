@@ -1,0 +1,35 @@
+.edit-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: white;
+    box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 16px 32px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+
+.edit-box h2{
+    text-align: left;
+    margin-top: 0;
+}
+
+
+
+.edit-box .content{
+    display: inline-block;
+    width: 100%;
+    height: max-content;
+    border: none;
+}
+
+.edit-box img{
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    border: none;
+}

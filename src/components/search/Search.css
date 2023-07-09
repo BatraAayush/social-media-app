@@ -1,0 +1,28 @@
+.profile-pic{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+.search{
+    width: 30%;
+}
+.search-section{
+    position: fixed;
+    top: 0;
+}
+
+.search-section .user{
+    width: 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.search-section .username{
+    width: 7rem
+}
+
+.search-section .container-1{
+    display: flex;
+    gap:1rem
+}

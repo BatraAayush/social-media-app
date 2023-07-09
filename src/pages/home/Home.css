@@ -1,0 +1,53 @@
+.home{
+    width:40%
+}
+
+.home h2{
+    text-align: center;
+}
+
+.home .create-post .text-input{
+    width: 100%;
+    height: 5rem;
+    font-size: medium
+}
+
+.home .container-1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home button{
+    margin-left: 1rem;
+}
+
+.home .filter-btn{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+    top:1rem
+}
+
+.home .container-1{
+    position: relative;
+}
+
+.home .filter-box{
+    position: absolute;
+    top: 3rem;
+    left: 20rem;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 5px 5px 10px grey, -5px -5px 10px darkgrey;
+}
+.home .filter-box > *:hover{
+    cursor: pointer;
+}
+
+.home .filter-btn:hover, .image-icon:hover{
+    cursor: pointer;
+}
+
+.container-1 span:hover{
+    cursor: pointer;
+}

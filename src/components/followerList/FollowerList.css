@@ -1,0 +1,7 @@
+.follower-list{
+    border: 1px solid black;
+    padding: .5rem;
+    font-size: small;
+    position: absolute;
+    background-color: white;
+}

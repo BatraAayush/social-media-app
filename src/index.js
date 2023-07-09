@@ -5,6 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
+import { LoginProvider } from "./contexts/LoginProvider";
+import { PostProvider } from "./contexts/PostProvider";
+import { UserProvider } from "./contexts/UserProvider";
 
 // Call make Server
 makeServer();
@@ -13,7 +16,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            <LoginProvider>
+                <PostProvider>
+                    <UserProvider>
+                        <App />
+                    </UserProvider>
+                </PostProvider>
+            </LoginProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

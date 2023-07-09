@@ -1,0 +1,44 @@
+.profile{
+    width: 40%;
+}
+
+.profile .container-1{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile .container-2{
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile .container-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.profile .container-4{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile .big{
+    width: 7rem;
+    height: 7rem;
+}
+
+.profile .edit-profile{
+    position: absolute;
+    width: 20rem;
+    background-color: white;
+    border: 1px solid;
+}
+
+.profile .edit-profile label{
+    width: 8rem;
+    display: inline-block;
+}
