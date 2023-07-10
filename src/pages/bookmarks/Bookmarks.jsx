@@ -10,7 +10,7 @@ const Bookmarks = () => {
     const { getBookmarkedPosts, bookmarks, posts } = usePostContext();
     useEffect(() => {
         getBookmarkedPosts();
-    }, []);
+    }, [posts]);
     return (
         <div className="main-layout">
             <Navigation />
