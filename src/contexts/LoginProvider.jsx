@@ -58,8 +58,12 @@ export const LoginProvider = ({ children }) => {
         toast("Incorrect Input");
     };
     const rightDetailAlert = () => {
-        toast("Incorrect Input");
+        toast("Logged In");
     };
+    const logOutAlert = () => {
+        toast("Logged Out");
+    };
+    
     // const token = localStorage.getItem("encodedToken");
     // const userDetails = localStorage.getItem("userDetails");
     // useEffect(() => {
@@ -100,6 +104,7 @@ export const LoginProvider = ({ children }) => {
                 localStorage.setItem("encodedToken", encodedToken);
                 localStorage.setItem("userDetails", JSON.stringify(foundUser));
                 dispatch({ type: "setUserDetails", payload: foundUser });
+                rightDetailAlert();
                 navigate("/");
             } else {
                 wrongDetailAlert();
@@ -153,15 +158,17 @@ export const LoginProvider = ({ children }) => {
                     localStorage.setItem("encodedToken", encodedToken);
                     dispatch({ type: "setUserDetails", payload: createdUser });
                     dispatch({ type: "setLogin", payload: true });
+                    rightDetailAlert();
                     navigate("/");
-                } else {
-                    alert("Something went wrong.");
                 }
-            } else alert("Wrong Input");
+            } else wrongDetailAlert();
         } catch {}
     };
 
-    const logoutHandler = () => dispatch({ type: "setLogin", payload: false });
+    const logoutHandler = () =>{
+         dispatch({ type: "setLogin", payload: false });
+         logOutAlert();
+        };
 
     return (
         <LoginContext.Provider

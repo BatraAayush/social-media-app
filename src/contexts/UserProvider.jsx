@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useLoginContext } from "./LoginProvider";
 
 const { createContext, useContext, useReducer } = require("react");
@@ -86,6 +87,9 @@ export const UserProvider = ({ children }) => {
             console.log(e);
         }
     };
+    const editUserAlert = () => {
+        toast(`User Details edited`);
+    }
     const editProfileHandler = async (newUserDetails) => {
         try {
             console.log(newUserDetails);
@@ -102,11 +106,18 @@ export const UserProvider = ({ children }) => {
                 const { user } = await res.json();
                 dispatch({ type: "setUser", payload: user });
                 dispatchLogin({ type: "setUserDetails", payload: user });
+                editUserAlert()
             }
         } catch (e) {
             console.log(e);
         }
     };
+    const followAlert = (name) => {
+        toast(`Followed ${name}`);
+    }
+    const unfollowAlert = (name) => {
+        toast(`Unfollowed ${name}`);
+    }
     const followHandler = async (id) => {
         try {
             const res = await fetch(`/api/users/follow/${id}`, {
@@ -121,6 +132,7 @@ export const UserProvider = ({ children }) => {
                 const { user, followUser } = response;
                 dispatchLogin({ type: "setUserDetails", payload: user });
                 dispatch({ type: "setUser", payload: followUser });
+                followAlert(followUser.username);
             }
         } catch (e) {
             console.log(e);
@@ -141,6 +153,7 @@ export const UserProvider = ({ children }) => {
                 const { user, followUser } = response;
                 dispatch({ type: "setUser", payload: followUser });
                 dispatchLogin({ type: "setUserDetails", payload: user });
+                unfollowAlert(followUser.username)
             }
         } catch (e) {
             console.log(e);

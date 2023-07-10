@@ -7,7 +7,6 @@ import "./Home.css";
 import { VscSettings } from "react-icons/vsc";
 import { BiTrendingUp } from "react-icons/bi";
 import { BiTimeFive } from "react-icons/bi";
-import { posts } from "../../backend/db/posts";
 
 const Home = () => {
     let { homePosts, getHomePosts, posts } = usePostContext();

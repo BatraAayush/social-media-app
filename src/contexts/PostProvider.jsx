@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../backend/utils/authUtils";
 import { useLoginContext } from "./LoginProvider";
+import { toast } from "react-toastify";
 
 const PostContext = createContext();
 
@@ -66,6 +67,9 @@ const postReducer = (state, action) => {
     }
 };
 export const PostProvider = ({ children }) => {
+    const createdPostAlert = () => {
+        toast("Created Post");
+    };
     const { userDetails } = useLoginContext();
     const [state, dispatch] = useReducer(postReducer, {
         posts: [],
@@ -173,6 +177,8 @@ export const PostProvider = ({ children }) => {
                 const { posts } = await res.json();
                 dispatch({ type: "setPosts", payload: posts });
                 dispatch({ type: "setFilterBy", payload: "latest" });
+
+                createdPostAlert();
             }
         } catch (e) {
             console.log(e);
@@ -204,7 +210,9 @@ export const PostProvider = ({ children }) => {
             dispatch({ type: "setFilterBy", payload: "latest" });
         }
     };
-
+    const editPostAlert = () => {
+        toast(`Post Edited`);
+    }
     const editHandler = async (input, src, post) => {
         try {
             const postData = { ...post, content: input, mediaURL: src };
@@ -219,12 +227,18 @@ export const PostProvider = ({ children }) => {
                 const { posts } = await res.json();
                 dispatch({ type: "setPosts", payload: posts });
                 dispatch({ type: "setFilterBy", payload: "latest" });
+                editPostAlert();
             }
         } catch (e) {
             console.log(e);
         }
     };
-
+    const bookmarkAlert = () => {
+        toast(`Post Bookmarked`);
+    }
+    const unbookmarkAlert = () => {
+        toast(`Post Unbookmarked`);
+    }
     const bookmarkHandler = async (id) => {
         try {
             const res = await fetch(`/api/users/bookmark/${id}`, {
@@ -239,6 +253,7 @@ export const PostProvider = ({ children }) => {
                 const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
                 console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
+                bookmarkAlert();
             }
         } catch (e) {
             console.log(e);
@@ -258,6 +273,7 @@ export const PostProvider = ({ children }) => {
                 const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
                 console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
+                unbookmarkAlert();
             }
         } catch (e) {
             console.log(e);

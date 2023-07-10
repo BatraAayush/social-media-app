@@ -2,14 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { useLoginContext } from "../../contexts/LoginProvider";
-import { toast } from "react-toastify";
 
 
 const Login = () => {
     const {usernameInputHandler, passwordInputHandler, fetchLoginDetails} = useLoginContext();
-    const notify = () => {
-        toast("Logged In");
-    };
+
 
     return (
         <div className="login-container">
@@ -22,11 +19,9 @@ const Login = () => {
             </div>
             <button className="dark-btn" onClick={() => {
                 fetchLoginDetails("normal");
-                notify();
                 }}>Login</button>
             <button className="dark-btn" onClick={() => {
                 fetchLoginDetails("test");
-                notify();
                 }}>Guest Mode</button>
             <p>
                 Dont have an account? <Link to="/signup">Signup</Link>
