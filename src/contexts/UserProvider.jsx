@@ -31,6 +31,12 @@ const userReducer = (state, action) => {
         case "setUserPosts": {
             return { ...state, userPosts: action.payload };
         }
+        case "setUsersLoading":{
+            return {...state, usersLoading: action.payload}
+        }
+        case "setProfileLoading":{
+            return {...state, profileLoading: action.payload}
+        }
         default: {
             return state;
         }
@@ -47,6 +53,8 @@ export const UserProvider = ({ children }) => {
         urlInput: "",
         websiteInput: "",
         userPosts: [],
+        usersLoading:true,
+        profileLoading: true
     });
 
     const fetchUsers = async () => {
@@ -58,6 +66,8 @@ export const UserProvider = ({ children }) => {
             }
         } catch (e) {
             console.log(e);
+        } finally{
+            dispatch({type:"setUsersLoading", payload: false})
         }
     };
 
@@ -85,6 +95,11 @@ export const UserProvider = ({ children }) => {
             }
         } catch (e) {
             console.log(e);
+        } finally {
+            setTimeout(() => {
+                dispatch({type:"setProfileLoading", payload: false})
+            },1000)
+
         }
     };
     const editUserAlert = () => {
@@ -192,6 +207,8 @@ export const UserProvider = ({ children }) => {
                 unFollowHandler,
                 getUserPosts,
                 userPosts: state.userPosts,
+                usersLoading: state.usersLoading,
+                profileLoading: state.profileLoading
             }}
         >
             {children}

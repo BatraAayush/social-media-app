@@ -7,9 +7,10 @@ import "./Home.css";
 import { VscSettings } from "react-icons/vsc";
 import { BiTrendingUp } from "react-icons/bi";
 import { BiTimeFive } from "react-icons/bi";
+import Spinner from "../../components/spinner/Spinner";
 
 const Home = () => {
-    let { homePosts, getHomePosts, posts } = usePostContext();
+    let { homePosts, getHomePosts, posts, postsLoading, usersLoading } = usePostContext();
     const {
         setFilterBy,
         filterBy,
@@ -21,6 +22,7 @@ const Home = () => {
     useEffect(() => {
         getHomePosts();
     }, [posts]);
+    console.log(postsLoading);
     return (
         <div className="main-layout">
             <Navigation />
@@ -80,11 +82,17 @@ const Home = () => {
                         </div>
                     )}
                 </div>
-                {homePosts.map((post) => (
+                {
+                    homePosts.map((post) => (
                     <PostCard key={post.id} post={post} />
                 ))}
             </div>
             <Search />
+            {(postsLoading) && (
+                <div className="loading-div">  
+                    <Spinner className="spinner" />
+                </div>
+            )}
         </div>
     );
 };

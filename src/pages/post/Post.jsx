@@ -5,10 +5,11 @@ import "./Post.css";
 import PostCard from "../../components/postCard/PostCard";
 import { useParams } from "react-router";
 import { usePostContext } from "../../contexts/PostProvider";
+import Spinner from "../../components/spinner/Spinner";
 
 const Post = () => {
     const { postId } = useParams();
-    const {getPost, post} = usePostContext();
+    const {getPost, post, postLoading} = usePostContext();
     useEffect(() => {
       getPost(postId);
     },[])
@@ -20,6 +21,11 @@ const Post = () => {
                 <PostCard post={post} details/>
             </div>
             <Search />
+            {(postLoading) && (
+                <div className="loading-div">  
+                    <Spinner className="spinner" />
+                </div>
+            )}
         </div>
     );
 };

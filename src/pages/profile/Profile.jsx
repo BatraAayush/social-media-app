@@ -11,6 +11,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import FollowerList from "../../components/followerList/FollowerList";
 import { usePostContext } from "../../contexts/PostProvider";
 import { RxCross1 } from "react-icons/rx";
+import Spinner from "../../components/spinner/Spinner";
 
 const Profile = () => {
     const { profileId } = useParams();
@@ -29,6 +30,7 @@ const Profile = () => {
         unFollowHandler,
         getUserPosts,
         userPosts,
+        profileLoading
     } = useUserContext();
     useEffect(() => {
         getUser(profileId);
@@ -36,7 +38,7 @@ const Profile = () => {
 
     useEffect(() => {
         getUserPosts(user.username);
-    }, [user, userDetails, posts]);
+    }, [user, userDetails, posts, profileId]);
 
     const {
         _id,
@@ -60,6 +62,7 @@ const Profile = () => {
         website: userDetails.website,
     });
     const followed = followersWithUsername?.includes(userDetails?.username);
+
     return (
         <div className="main-layout">
             <Navigation />
@@ -285,6 +288,11 @@ const Profile = () => {
                 </div>
             </div>
             <Search />
+            {(profileLoading) && (
+                <div className="loading-div">  
+                    <Spinner className="spinner" />
+                </div>
+            )}
         </div>
     );
 };

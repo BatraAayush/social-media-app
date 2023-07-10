@@ -1,20 +1,32 @@
 :root {
-  --light-grey: #dae2e6;
-  --black: #0f1419;
-  --white:#fefefe;
-  --blue: rgb(29, 155, 240);
-  --greyBg: #eff3f4;
+    --light-grey: #dae2e6;
+    --black: #0f1419;
+    --white: #fefefe;
+    --blue: rgb(29, 155, 240);
+    --greyBg: #eff3f4;
 }
 
-.main-layout{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 1rem;
-  margin-bottom: 2rem;
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
 }
 
-.App{
-  font-family: 'Inter', sans-serif;
-  background-color: var(--white);
+.App {
+    font-family: "Inter", sans-serif;
+    background-color: var(--white);
+}
+
+.loading-div {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(97, 97, 98, 0.5);
+    padding-top: 30%;
 }

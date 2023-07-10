@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { formatDate } from "../backend/utils/authUtils";
 import { useLoginContext } from "./LoginProvider";
 import { toast } from "react-toastify";
+import { act } from "react-dom/test-utils";
 
 const PostContext = createContext();
 
@@ -13,6 +14,12 @@ const postReducer = (state, action) => {
         }
         case "setPost": {
             return { ...state, post: action.payload };
+        }
+        case "setPostsLoading": {
+            return { ...state, postsLoading: action.payload };
+        }
+        case "setPostLoading": {
+            return { ...state, postLoading: action.payload };
         }
         case "setFilterBy": {
             if (action.payload === "latest") {
@@ -80,6 +87,8 @@ export const PostProvider = ({ children }) => {
         textInput: "",
         liked: false,
         bookmarks: [],
+        postsLoading: true,
+        postLoading: true
     });
 
     const fetchPostsData = async () => {
@@ -90,9 +99,14 @@ export const PostProvider = ({ children }) => {
             if (res.status === 200) {
                 const { posts } = await res.json();
                 dispatch({ type: "setPosts", payload: posts });
+                setTimeout(() => {
+                    dispatch({ type: "setPostsLoading", payload: false });
+                }, 2000);
             }
         } catch (e) {
             console.log(e);
+            dispatch({ type: "setPostsLoading", payload: false });
+        } finally {
         }
     };
 
@@ -195,6 +209,8 @@ export const PostProvider = ({ children }) => {
             }
         } catch (e) {
             console.log(e);
+        } finally{
+            dispatch({ type: "setPostLoading", payload: false });
         }
     };
     const deleteHandler = async (id) => {
@@ -212,7 +228,7 @@ export const PostProvider = ({ children }) => {
     };
     const editPostAlert = () => {
         toast(`Post Edited`);
-    }
+    };
     const editHandler = async (input, src, post) => {
         try {
             const postData = { ...post, content: input, mediaURL: src };
@@ -235,10 +251,10 @@ export const PostProvider = ({ children }) => {
     };
     const bookmarkAlert = () => {
         toast(`Post Bookmarked`);
-    }
+    };
     const unbookmarkAlert = () => {
         toast(`Post Unbookmarked`);
-    }
+    };
     const bookmarkHandler = async (id) => {
         try {
             const res = await fetch(`/api/users/bookmark/${id}`, {
@@ -250,7 +266,9 @@ export const PostProvider = ({ children }) => {
             });
             if (res.status === 200) {
                 const { bookmarks } = await res.json();
-                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                const bookmarkedPosts = state.posts.filter(({ _id }) =>
+                    bookmarks.includes(_id)
+                );
                 console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
                 bookmarkAlert();
@@ -270,7 +288,9 @@ export const PostProvider = ({ children }) => {
             });
             if (res.status === 200) {
                 const { bookmarks } = await res.json();
-                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                const bookmarkedPosts = state.posts.filter(({ _id }) =>
+                    bookmarks.includes(_id)
+                );
                 console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
                 unbookmarkAlert();
@@ -279,24 +299,25 @@ export const PostProvider = ({ children }) => {
             console.log(e);
         }
     };
-    const getBookmarkedPosts = async() => {
-        try{
-            const res = await fetch(`/api/users/bookmark/`,{
+    const getBookmarkedPosts = async () => {
+        try {
+            const res = await fetch(`/api/users/bookmark/`, {
                 headers: {
                     authorization: `${localStorage.getItem("encodedToken")}`,
                 },
             });
-            if(res.status === 200){
+            if (res.status === 200) {
                 const { bookmarks } = await res.json();
-                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                const bookmarkedPosts = state.posts.filter(({ _id }) =>
+                    bookmarks.includes(_id)
+                );
                 console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
             }
-
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
-    }
+    };
     return (
         <PostContext.Provider
             value={{
@@ -317,7 +338,9 @@ export const PostProvider = ({ children }) => {
                 bookmarkHandler,
                 unBookmarkHandler,
                 bookmarks: state.bookmarks,
-                getBookmarkedPosts
+                getBookmarkedPosts,
+                postsLoading: state.postsLoading,
+                postLoading: state.postLoading
             }}
         >
             {children}
