@@ -1,5 +1,6 @@
 .home{
-    width:40%
+    width:40%;
+    margin-left: 10rem;
 }
 
 .home h2{
@@ -32,15 +33,28 @@
     position: relative;
 }
 
+.home .container-2{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
 .home .filter-box{
     position: absolute;
     top: 3rem;
-    left: 20rem;
+    right:2rem;
     background-color: white;
     padding: 1rem;
-    box-shadow: 5px 5px 10px grey, -5px -5px 10px darkgrey;
+    box-shadow: 0 3px 10px var(--black);
+    width: 7rem;
+    border-radius: .5rem;
+    z-index: 2;
 }
-.home .filter-box > *:hover{
+.sort-div{
+    margin: .5rem;
+}
+
+.sort-div:hover{
     cursor: pointer;
 }
 
@@ -50,4 +64,18 @@
 
 .container-1 span:hover{
     cursor: pointer;
+}
+
+.home .dark-btn{
+    background-color: var(--blue);
+    border: none;
+    margin: 1rem 0 0 0;
+}
+
+.home input{
+    border: 1px solid var(--light-grey);
+    padding: .5rem;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    border-radius: .5rem;
 }

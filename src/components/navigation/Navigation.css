@@ -1,12 +1,48 @@
-.navigation .container-1{
+.navigation .container-1 {
     display: flex;
     flex-direction: column;
 }
 
-.navigation{
+.navigation .dark-btn {
+    background-color: var(--blue);
+    border: none;
+}
+
+.navigation {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: 90vh;
     position: fixed;
+    padding-top: 1rem;
 }
+
+.navigation .nav-link {
+    padding-bottom: 2rem;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.profile{
+    display: flex;
+    gap:1rem;
+    width: 10rem;
+}
+
+.profile img{
+    position: relative;
+    top:.3rem
+}
+
+.username{
+    font-size: small;
+}
+
+.name{
+    display: inline-block;
+    width: 10rem;
+}
+
+

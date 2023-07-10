@@ -1,21 +1,17 @@
 .edit-box{
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    background-color: white;
-    box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    0 4px 8px rgba(0, 0, 0, 0.2),
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    0 16px 32px rgba(0, 0, 0, 0.2);
-    padding: 1rem;
+    z-index: 2;
+    background-color: var(--white);
+    box-shadow: 0 3px 10px var(--black);
+    border-radius: .5rem;
+    padding: 1rem .5rem;
+    top: 10%;
+    right: 40%;
 }
 
 .edit-box h2{
     text-align: left;
-    margin-top: 0;
+    margin: 0;
 }
 
 
@@ -32,4 +28,15 @@
     width: 20rem;
     height: 20rem;
     border: none;
+    margin-top: 1rem;
+    display: block;
+}
+
+.edit-box .buttons .dark-btn{
+    background-color: var(--black);
+}
+
+.edit-box .buttons{
+    display: flex;
+    justify-content: space-between;
 }

@@ -10,6 +10,7 @@ import PostCard from "../../components/postCard/PostCard";
 import { useUserContext } from "../../contexts/UserProvider";
 import FollowerList from "../../components/followerList/FollowerList";
 import { usePostContext } from "../../contexts/PostProvider";
+import { RxCross1 } from "react-icons/rx";
 
 const Profile = () => {
     const { profileId } = useParams();
@@ -18,7 +19,7 @@ const Profile = () => {
     const [editProfile, setEditProfile] = useState(false);
     const [followerList, setFollowerList] = useState(false);
     const [followingList, setFollowingList] = useState(false);
-    const {posts} = usePostContext();
+    const { posts } = usePostContext();
     const {
         getUser,
         user,
@@ -27,7 +28,7 @@ const Profile = () => {
         followHandler,
         unFollowHandler,
         getUserPosts,
-        userPosts
+        userPosts,
     } = useUserContext();
     useEffect(() => {
         getUser(profileId);
@@ -35,7 +36,7 @@ const Profile = () => {
 
     useEffect(() => {
         getUserPosts(user.username);
-    },[user, userDetails, posts])
+    }, [user, userDetails, posts]);
 
     const {
         _id,
@@ -62,14 +63,18 @@ const Profile = () => {
     return (
         <div className="main-layout">
             <Navigation />
-            <div className="profile">
-                <div className="container-1">
+            <div className="profile-box">
+                <div className="container-1-1">
                     <Link to="/">
                         <AiOutlineArrowLeft />
                     </Link>
-                    <div>
-                        <div>{username}</div>
-                        <div>{userPosts.length} posts</div>
+                    <div className="container-5">
+                        <h3>
+                            {firstName} {lastName}
+                        </h3>
+                        <div>
+                            <small>{userPosts.length} posts</small>
+                        </div>
                     </div>
                 </div>
                 <div className="container-3">
@@ -81,7 +86,7 @@ const Profile = () => {
                                 alt="profile pic"
                             />
                         </div>
-                        <div>
+                        <div className="user-details">
                             <strong>
                                 {firstName} {lastName}
                             </strong>
@@ -100,7 +105,7 @@ const Profile = () => {
                                             setFollowingList(false);
                                         }}
                                     >
-                                        Follower: {followers?.length}
+                                        Followers: {followers?.length}
                                     </div>
                                     <div
                                         onClick={() => {
@@ -114,32 +119,51 @@ const Profile = () => {
                                 </div>
                             </div>
                             {followerList && (
-                                <FollowerList followers={followers} />
+                                <FollowerList
+                                    followers={followers}
+                                    setFollowerList={setFollowerList}
+                                    setFollowingList={setFollowingList}
+                                />
                             )}
                             {followingList && (
-                                <FollowerList followers={following} following />
+                                <FollowerList
+                                    followers={following}
+                                    setFollowerList={setFollowerList}
+                                    setFollowingList={setFollowingList}
+                                    following
+                                />
                             )}
                         </div>
                     </div>
-                    <div>
+                    <div className="edit-section">
                         {userDetails._id === user._id ? (
                             <>
-                                <button onClick={() => setEditProfile(true)}>
+                                <button
+                                    className="dark-btn"
+                                    onClick={() => setEditProfile(true)}
+                                >
                                     Edit Profile
                                 </button>
-                                <button onClick={logoutHandler}>Log Out</button>
+                                <button
+                                    className="dark-btn"
+                                    onClick={logoutHandler}
+                                >
+                                    Log Out
+                                </button>
                                 {editProfile && (
                                     <div className="edit-profile">
                                         <div className="container-4">
-                                            <button
+                                            <RxCross1
+                                                className="cross-btn"
                                                 onClick={() =>
                                                     setEditProfile(false)
                                                 }
                                             >
                                                 Close
-                                            </button>
+                                            </RxCross1>
                                             <strong>Edit Profile</strong>
                                             <button
+                                                className="dark-btn"
                                                 onClick={() => {
                                                     editProfileHandler(
                                                         newUserDetails
@@ -150,8 +174,8 @@ const Profile = () => {
                                                 Save
                                             </button>
                                         </div>
-                                        <div>
-                                            <label>First Name: </label>
+                                        <div className="field">
+                                            <label>First Name </label>
                                             <input
                                                 onChange={(e) =>
                                                     setNewUserDetails({
@@ -166,8 +190,8 @@ const Profile = () => {
                                                 type="text"
                                             />
                                         </div>
-                                        <div>
-                                            <label>Last Name: </label>
+                                        <div className="field">
+                                            <label>Last Name </label>
                                             <input
                                                 onChange={(e) =>
                                                     setNewUserDetails({
@@ -182,8 +206,8 @@ const Profile = () => {
                                                 type="text"
                                             />
                                         </div>
-                                        <div>
-                                            <label>Bio: </label>
+                                        <div className="field">
+                                            <label>Bio </label>
                                             <input
                                                 onChange={(e) =>
                                                     setNewUserDetails({
@@ -197,8 +221,8 @@ const Profile = () => {
                                                 type="text"
                                             />
                                         </div>
-                                        <div>
-                                            <label>Website: </label>
+                                        <div className="field">
+                                            <label>Website </label>
                                             <input
                                                 onChange={(e) =>
                                                     setNewUserDetails({
@@ -212,8 +236,8 @@ const Profile = () => {
                                                 type="text"
                                             />
                                         </div>
-                                        <div>
-                                            <label>Profile URL: </label>
+                                        <div className="field">
+                                            <label>Profile URL </label>
                                             <input
                                                 onChange={(e) =>
                                                     setNewUserDetails({
@@ -235,12 +259,16 @@ const Profile = () => {
                             <>
                                 {followed ? (
                                     <button
+                                        className="dark-btn"
                                         onClick={() => unFollowHandler(_id)}
                                     >
                                         UnFollow
                                     </button>
                                 ) : (
-                                    <button onClick={() => followHandler(_id)}>
+                                    <button
+                                        className="dark-btn"
+                                        onClick={() => followHandler(_id)}
+                                    >
                                         Follow
                                     </button>
                                 )}
@@ -250,6 +278,7 @@ const Profile = () => {
                 </div>
                 <div>
                     <h3>Posts</h3>
+                    <br></br>
                     {userPosts.map((post) => (
                         <PostCard post={post} />
                     ))}

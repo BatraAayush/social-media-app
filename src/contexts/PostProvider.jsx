@@ -259,6 +259,22 @@ export const PostProvider = ({ children }) => {
             console.log(e);
         }
     };
+    const getBookmarkedPosts = async() => {
+        try{
+            const res = await fetch(`/api/users/bookmark/`,{
+                headers: {
+                    authorization: `${localStorage.getItem("encodedToken")}`,
+                },
+            });
+            if(res.status === 200){
+                const {bookmarks} = await res.json();
+                dispatch({ type: "setBookmarks", payload: bookmarks });
+            }
+
+        }catch(e){
+            console.log(e);
+        }
+    }
     return (
         <PostContext.Provider
             value={{
@@ -278,7 +294,8 @@ export const PostProvider = ({ children }) => {
                 getHomePosts,
                 bookmarkHandler,
                 unBookmarkHandler,
-                bookmarks: state.bookmarks
+                bookmarks: state.bookmarks,
+                getBookmarkedPosts
             }}
         >
             {children}

@@ -45,7 +45,7 @@ const Signup = () => {
                 />
             </div>
 
-            <button onClick={fetchSignupDetails}>Create New Account</button>
+            <button className="dark-btn" onClick={fetchSignupDetails}>Create New Account</button>
             <p>
                 Already have an account? <Link to="/login">Login</Link>
             </p>

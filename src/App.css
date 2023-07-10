@@ -2,7 +2,8 @@
   --light-grey: #dae2e6;
   --black: #0f1419;
   --white:#fefefe;
-  --blue: rgb(29, 155, 240)
+  --blue: rgb(29, 155, 240);
+  --greyBg: #eff3f4;
 }
 
 .main-layout{
@@ -10,6 +11,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding-left: 1rem;
+  margin-bottom: 2rem;
 }
 
 .App{

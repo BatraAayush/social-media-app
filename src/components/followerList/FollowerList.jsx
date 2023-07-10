@@ -1,30 +1,56 @@
 import React from "react";
 import "./FollowerList.css";
+import { Link } from "react-router-dom";
+import { RxCross1 } from "react-icons/rx";
 
-const FollowerList = ({ followers, following }) => {
+const FollowerList = ({
+    followers,
+    following,
+    setFollowerList,
+    setFollowingList,
+}) => {
     return (
         <div className="follower-list">
             {followers.length === 0 ? (
                 <div>
-                    No{" "}
+                    <div
+                        onClick={() => {
+                            setFollowerList(false);
+                            setFollowingList(false);
+                        }}
+                    >
+                        <RxCross1 />
+                    </div>
+
                     {following ? (
-                        <span>Following</span>
+                        <span>No Following</span>
                     ) : (
-                        <span>Followers</span>
+                        <span>No Followers</span>
                     )}
                 </div>
             ) : (
                 <div>
-                    <strong>
+                    <h3>
+                        <div
+                            onClick={() => {
+                                setFollowerList(false);
+                                setFollowingList(false);
+                            }}
+                        >
+                            <RxCross1 />
+                        </div>
                         {following ? (
                             <span>Following</span>
                         ) : (
                             <span>Followers</span>
                         )}
                         :
-                    </strong>
+                    </h3>
                     {followers.map((follower) => (
-                        <div className="container-1">
+                        <Link
+                            to={`/profile/${follower._id}`}
+                            className="container-1-1"
+                        >
                             <div>
                                 <img
                                     className="profile-pic"
@@ -38,7 +64,7 @@ const FollowerList = ({ followers, following }) => {
                                 </div>
                                 <div>@{follower.username}</div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             )}

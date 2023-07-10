@@ -15,12 +15,9 @@ import { useLoginContext } from "../../contexts/LoginProvider";
 import EditBox from "../edit-box/EditBox";
 import { useUserContext } from "../../contexts/UserProvider";
 
-const PostCard = ({ post, details }) => {
-
+export const PostCard = ({ post, details }) => {
     const { userDetails } = useLoginContext();
-    useEffect(() => {
-
-    },[userDetails])
+    useEffect(() => {}, [userDetails]);
     const likedBy = post?.likes?.likedBy?.find(
         ({ username }) => username === userDetails.username
     );
@@ -40,7 +37,7 @@ const PostCard = ({ post, details }) => {
     const daysDiff = Math.floor(hoursDiff / 24);
     const monthsDiff = Math.floor(daysDiff / 30);
     const yearsDiff = Math.floor(monthsDiff / 12);
- 
+
     const postAge = () => {
         if (yearsDiff) {
             return `${yearsDiff} yr ago`;
@@ -69,7 +66,7 @@ const PostCard = ({ post, details }) => {
 
     return (
         <div
-            style={{ border: details ? "none" : "1px solid" }}
+            style={{ border: details ? "none" : "1px solid #dae2e6" }}
             className="post-card"
         >
             <p className="container-2">
@@ -79,9 +76,12 @@ const PostCard = ({ post, details }) => {
                         src={user?.avatarUrl}
                         alt="profile pic"
                     />
-                    <strong>
-                        {user?.firstName} {user?.lastName}
-                    </strong>{" "}
+                    <div>
+                        <div>
+                            {user?.firstName} {user?.lastName}
+                        </div>
+                        <div className="username">@{user?.username}</div>
+                    </div>
                     <small>{postAge()}</small>
                 </Link>
                 <BsThreeDots
@@ -92,7 +92,7 @@ const PostCard = ({ post, details }) => {
                     <div className="options-box">
                         {userDetails.username === username ? (
                             <>
-                                <div>
+                                <div className="option">
                                     <strong onClick={() => setEditBox(true)}>
                                         <AiFillEdit /> Edit
                                     </strong>
@@ -143,7 +143,6 @@ const PostCard = ({ post, details }) => {
                 )}
             </p>
             <Link to={`/post/${_id}`}>
-                <p>@{username}</p>
                 <p>{content}</p>
                 {mediaURL !== "" && (
                     <img
@@ -154,25 +153,27 @@ const PostCard = ({ post, details }) => {
                 )}
             </Link>
             <div className="container-1">
-                <span>
+                <span
+                    onClick={() => {
+                        if (likedBy) {
+                            dislikeHandler(_id);
+                        } else likeHandler(_id);
+                    }}
+                >
                     <AiOutlineHeart
+                        className="icon"
                         style={{
                             color: likedBy ? "red" : "black",
-                        }}
-                        onClick={() => {
-                            if (likedBy) {
-                                dislikeHandler(_id);
-                            } else likeHandler(_id);
                         }}
                     />
                     {likes?.likeCount}
                 </span>
-                <span>
-                    <BiComment />
+                <Link to={`/post/${_id}`}>
+                    <BiComment className="icon" />
                     {comments?.length}
-                </span>
+                </Link>
                 <span>
-                    <AiOutlineShareAlt />
+                    <AiOutlineShareAlt className="icon" />
                 </span>
                 <span
                     onClick={() => {
@@ -183,7 +184,11 @@ const PostCard = ({ post, details }) => {
                         }
                     }}
                 >
-                    {bookmarkedBy ? <BsFillBookmarkFill /> : <BsBookmark />}
+                    {bookmarkedBy ? (
+                        <BsFillBookmarkFill className="icon" />
+                    ) : (
+                        <BsBookmark className="icon" />
+                    )}
                 </span>
             </div>
             {details && (

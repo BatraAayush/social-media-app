@@ -14,8 +14,8 @@ const Login = () => {
                 <input placeholder="Username" onChange={(e) => usernameInputHandler(e)} type="text" />
                 <input placeholder="password" onChange={(e) => passwordInputHandler(e)} type="password" />
             </div>
-            <button onClick={() => fetchLoginDetails("normal")}>Login</button>
-            <button onClick={() => fetchLoginDetails("test")}>Guest Mode</button>
+            <button className="dark-btn" onClick={() => fetchLoginDetails("normal")}>Login</button>
+            <button className="dark-btn" onClick={() => fetchLoginDetails("test")}>Guest Mode</button>
             <p>
                 Dont have an account? <Link to="/signup">Signup</Link>
             </p>

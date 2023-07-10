@@ -3,6 +3,7 @@ import { useUserContext } from "../../contexts/UserProvider";
 import "./Search.css";
 import { useLoginContext } from "../../contexts/LoginProvider";
 import { Link } from "react-router-dom";
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const Search = () => {
     const { users, fetchUsers, followHandler } = useUserContext();
@@ -31,14 +32,15 @@ const Search = () => {
     return (
         <div className="search">
             <div className="search-section">
+                <AiOutlineSearch className="search-icon"/>
                 <input
                     onChange={(e) => {
                         setInput(e.target.value);
                     }}
                     placeholder="Search User"
                 />
-                <div>
-                    <h3>Suggested Users</h3>
+                <div className="suggested-users">
+                    <h2>Suggested Users</h2>
                     {getFilteredUsers().map(
                         ({ avatarUrl, firstName, lastName, username, _id }) => (
                             <div>
@@ -60,6 +62,7 @@ const Search = () => {
                                         </div>
                                     </Link>
                                     <button
+                                        className="dark-btn"
                                         onClick={() => {
                                             followHandler(_id);
                                         }}

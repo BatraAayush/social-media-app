@@ -23,11 +23,11 @@
     text-align: left;
 }
 
-.login-container button{
+.dark-btn{
     background-color: var(--black);
     color: var(--white);
     margin-bottom: 1rem;
-    padding: .5rem;
+    padding: .5rem 1rem;
     border-radius: 2rem;
     font-weight: bold;
 }
