@@ -236,7 +236,9 @@ export const PostProvider = ({ children }) => {
             });
             if (res.status === 200) {
                 const { bookmarks } = await res.json();
-                dispatch({ type: "setBookmarks", payload: bookmarks });
+                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                console.log(bookmarkedPosts);
+                dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
             }
         } catch (e) {
             console.log(e);
@@ -253,7 +255,9 @@ export const PostProvider = ({ children }) => {
             });
             if (res.status === 200) {
                 const { bookmarks } = await res.json();
-                dispatch({ type: "setBookmarks", payload: bookmarks });
+                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                console.log(bookmarkedPosts);
+                dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
             }
         } catch (e) {
             console.log(e);
@@ -267,8 +271,10 @@ export const PostProvider = ({ children }) => {
                 },
             });
             if(res.status === 200){
-                const {bookmarks} = await res.json();
-                dispatch({ type: "setBookmarks", payload: bookmarks });
+                const { bookmarks } = await res.json();
+                const bookmarkedPosts = state.posts.filter(({_id}) => bookmarks.includes(_id));
+                console.log(bookmarkedPosts);
+                dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
             }
 
         }catch(e){

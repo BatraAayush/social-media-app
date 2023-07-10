@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const LoginContext = createContext();
 
@@ -52,6 +53,13 @@ export const LoginProvider = ({ children }) => {
         sUsernameInput: "",
         login: false,
     });
+
+    const wrongDetailAlert = () => {
+        toast("Incorrect Input");
+    };
+    const rightDetailAlert = () => {
+        toast("Incorrect Input");
+    };
     // const token = localStorage.getItem("encodedToken");
     // const userDetails = localStorage.getItem("userDetails");
     // useEffect(() => {
@@ -94,7 +102,7 @@ export const LoginProvider = ({ children }) => {
                 dispatch({ type: "setUserDetails", payload: foundUser });
                 navigate("/");
             } else {
-                alert("wrong details");
+                wrongDetailAlert();
             }
         } catch (e) {
             console.log(e);

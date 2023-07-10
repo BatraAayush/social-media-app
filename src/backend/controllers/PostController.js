@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 
 /**
  * This handler handles gets all posts in the db.
- * send GET Request at /api/posts done
+ * send GET Request at /api/posts
  * */
 
 export const getAllpostsHandler = function () {
@@ -17,7 +17,7 @@ export const getAllpostsHandler = function () {
 
 /**
  * This handler gets post by postId in the db.
- * send GET Request at /api/posts/:postId done
+ * send GET Request at /api/posts/:postId
  * */
 
 export const getPostHandler = function (schema, request) {
@@ -38,7 +38,7 @@ export const getPostHandler = function (schema, request) {
 
 /**
  * This handler gets posts of a user in the db.
- * send GET Request at /api/posts/user/:username 
+ * send GET Request at /api/posts/user/:username
  * */
 
 export const getAllUserPostsHandler = function (schema, request) {
@@ -60,7 +60,7 @@ export const getAllUserPostsHandler = function (schema, request) {
 /**
  * This handler handles creating a post in the db.
  * send POST Request at /api/user/posts/
- * body contains {content} done
+ * body contains {content}
  * */
 
 export const createPostHandler = function (schema, request) {
@@ -149,7 +149,7 @@ export const editPostHandler = function (schema, request) {
 };
 
 /**
- * This handler handles liking a post in the db. notdone
+ * This handler handles liking a post in the db.
  * send POST Request at /api/posts/like/:postId
  * */
 

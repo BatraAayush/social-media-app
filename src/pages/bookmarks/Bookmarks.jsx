@@ -7,7 +7,7 @@ import PostCard from "../../components/postCard/PostCard";
 import { useLoginContext } from "../../contexts/LoginProvider";
 
 const Bookmarks = () => {
-    const { getBookmarkedPosts, bookmarks } = usePostContext();
+    const { getBookmarkedPosts, bookmarks, posts } = usePostContext();
     useEffect(() => {
         getBookmarkedPosts();
     }, []);
