@@ -22,7 +22,6 @@ const Home = () => {
     useEffect(() => {
         getHomePosts();
     }, [posts]);
-    console.log(postsLoading);
     return (
         <div className="main-layout">
             <Navigation />
@@ -54,7 +53,6 @@ const Home = () => {
                     />
                     {filterDialogue && (
                         <div className="filter-box">
-                            {console.log(filterBy)}
                             <div
                                 className="sort-div"
                                 style={{

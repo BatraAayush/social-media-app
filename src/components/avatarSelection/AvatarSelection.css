@@ -1,0 +1,22 @@
+.field img{
+    width: 2rem;
+    height:2rem;
+    cursor: pointer;
+}
+
+#center{
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.avatars{
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.selected{
+    border: 3px solid var(--blue);
+    border-radius: 50%;
+}

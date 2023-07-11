@@ -36,6 +36,7 @@ export const signupHandler = function (schema, request) {
       updatedAt: formatDate(),
       username,
       password,
+      avatarUrl: "https://i.ibb.co/59hVJKW/a-1.png",
       ...rest,
       followers: [],
       following: [],

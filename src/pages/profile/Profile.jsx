@@ -12,6 +12,7 @@ import FollowerList from "../../components/followerList/FollowerList";
 import { usePostContext } from "../../contexts/PostProvider";
 import { RxCross1 } from "react-icons/rx";
 import Spinner from "../../components/spinner/Spinner";
+import AvatarSelection from "../../components/avatarSelection/AvatarSelection";
 
 const Profile = () => {
     const { profileId } = useParams();
@@ -30,7 +31,8 @@ const Profile = () => {
         unFollowHandler,
         getUserPosts,
         userPosts,
-        profileLoading
+        profileLoading,
+        selectedAvatar
     } = useUserContext();
     useEffect(() => {
         getUser(profileId);
@@ -242,6 +244,8 @@ const Profile = () => {
                                         <div className="field">
                                             <label>Profile URL </label>
                                             <input
+                                                disabled ={selectedAvatar !== ""}
+                                                className={selectedAvatar !== "" ? "disable" : ""}
                                                 onChange={(e) =>
                                                     setNewUserDetails({
                                                         ...newUserDetails,
@@ -254,6 +258,9 @@ const Profile = () => {
                                                 }
                                                 type="text"
                                             />
+                                        </div>
+                                        <div className="field">
+                                            <AvatarSelection />
                                         </div>
                                     </div>
                                 )}
@@ -288,8 +295,8 @@ const Profile = () => {
                 </div>
             </div>
             <Search />
-            {(profileLoading) && (
-                <div className="loading-div">  
+            {profileLoading && (
+                <div className="loading-div">
                     <Spinner className="spinner" />
                 </div>
             )}

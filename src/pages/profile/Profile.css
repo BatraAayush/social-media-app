@@ -68,6 +68,7 @@
 .profile-box .dark-btn {
     font-size: small;
     margin-right: 0.5rem;
+    margin-top: .5rem;
 }
 
 .profile-box input {
@@ -94,4 +95,9 @@
 
 .profile-box .user-details >*{
     margin-bottom: .5rem;
+}
+
+.profile-box .disable{
+    background-color: var(--light-grey);
+    content: "NA";
 }

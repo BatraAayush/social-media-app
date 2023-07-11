@@ -31,11 +31,14 @@ const userReducer = (state, action) => {
         case "setUserPosts": {
             return { ...state, userPosts: action.payload };
         }
-        case "setUsersLoading":{
-            return {...state, usersLoading: action.payload}
+        case "setUsersLoading": {
+            return { ...state, usersLoading: action.payload };
         }
-        case "setProfileLoading":{
-            return {...state, profileLoading: action.payload}
+        case "setProfileLoading": {
+            return { ...state, profileLoading: action.payload };
+        }
+        case "setSelectedAvatar": {
+            return { ...state, selectedAvatar: action.payload };
         }
         default: {
             return state;
@@ -53,10 +56,17 @@ export const UserProvider = ({ children }) => {
         urlInput: "",
         websiteInput: "",
         userPosts: [],
-        usersLoading:true,
-        profileLoading: true
+        usersLoading: true,
+        profileLoading: true,
+        selectedAvatar: "",
     });
-
+    const handleAvatarSelect = (avatar) => {
+        if (state.selectedAvatar === avatar) {
+            dispatch({type:"setSelectedAvatar", payload:""});
+        } else {
+            dispatch({type:"setSelectedAvatar", payload:avatar});
+        }
+    };
     const fetchUsers = async () => {
         try {
             const res = await fetch("/api/users");
@@ -66,8 +76,8 @@ export const UserProvider = ({ children }) => {
             }
         } catch (e) {
             console.log(e);
-        } finally{
-            dispatch({type:"setUsersLoading", payload: false})
+        } finally {
+            dispatch({ type: "setUsersLoading", payload: false });
         }
     };
 
@@ -97,17 +107,18 @@ export const UserProvider = ({ children }) => {
             console.log(e);
         } finally {
             setTimeout(() => {
-                dispatch({type:"setProfileLoading", payload: false})
-            },1000)
-
+                dispatch({ type: "setProfileLoading", payload: false });
+            }, 1000);
         }
     };
     const editUserAlert = () => {
         toast(`User Details edited`);
-    }
+    };
     const editProfileHandler = async (newUserDetails) => {
         try {
-            console.log(newUserDetails);
+            if(state.selectedAvatar != ""){
+                newUserDetails = {...newUserDetails, avatarUrl: state.selectedAvatar};
+            }
             const res = await fetch(`/api/users/edit`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -121,7 +132,7 @@ export const UserProvider = ({ children }) => {
                 const { user } = await res.json();
                 dispatch({ type: "setUser", payload: user });
                 dispatchLogin({ type: "setUserDetails", payload: user });
-                editUserAlert()
+                editUserAlert();
             }
         } catch (e) {
             console.log(e);
@@ -129,10 +140,10 @@ export const UserProvider = ({ children }) => {
     };
     const followAlert = (name) => {
         toast(`Followed ${name}`);
-    }
+    };
     const unfollowAlert = (name) => {
         toast(`Unfollowed ${name}`);
-    }
+    };
     const followHandler = async (id) => {
         try {
             const res = await fetch(`/api/users/follow/${id}`, {
@@ -168,7 +179,7 @@ export const UserProvider = ({ children }) => {
                 const { user, followUser } = response;
                 dispatch({ type: "setUser", payload: followUser });
                 dispatchLogin({ type: "setUserDetails", payload: user });
-                unfollowAlert(followUser.username)
+                unfollowAlert(followUser.username);
             }
         } catch (e) {
             console.log(e);
@@ -177,7 +188,7 @@ export const UserProvider = ({ children }) => {
     const getUserPosts = async (userName) => {
         try {
             const response = await fetch(`/api/posts/user/${userName}`);
-            const {posts} = await response.json();
+            const { posts } = await response.json();
             if (response.status === 200) {
                 dispatch({ type: "setUserPosts", payload: posts });
             }
@@ -208,7 +219,9 @@ export const UserProvider = ({ children }) => {
                 getUserPosts,
                 userPosts: state.userPosts,
                 usersLoading: state.usersLoading,
-                profileLoading: state.profileLoading
+                profileLoading: state.profileLoading,
+                handleAvatarSelect,
+                selectedAvatar: state.selectedAvatar
             }}
         >
             {children}

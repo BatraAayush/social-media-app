@@ -17,17 +17,25 @@ import { useUserContext } from "../../contexts/UserProvider";
 
 export const PostCard = ({ post, details }) => {
     const { userDetails } = useLoginContext();
+    const {
+        deleteHandler,
+        bookmarkHandler,
+        unBookmarkHandler,
+        likeHandler,
+        dislikeHandler,
+        bookmarks,
+    } = usePostContext();
+    const { users, followHandler, unFollowHandler } = useUserContext();
     useEffect(() => {}, [userDetails]);
     const likedBy = post?.likes?.likedBy?.find(
         ({ username }) => username === userDetails.username
     );
     const [editBox, setEditBox] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
-    const { deleteHandler, bookmarkHandler, unBookmarkHandler } =
-        usePostContext();
+
     const { _id, username, createdAt, content, likes, comments, mediaURL } =
         post;
-    const { likeHandler, dislikeHandler, bookmarks } = usePostContext();
+
     const date = new Date(createdAt);
     const currentDate = new Date();
     const timeDiff = currentDate.getTime() - date.getTime();
@@ -54,7 +62,6 @@ export const PostCard = ({ post, details }) => {
         }
     };
 
-    const { users, followHandler, unFollowHandler } = useUserContext();
     const bookmarkedBy = bookmarks.find((post) => post._id === _id);
 
     const user = users.find((user) => user.username === post.username);
