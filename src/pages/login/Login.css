@@ -1,38 +1,49 @@
-.login-container{
+.login-container {
     margin: auto;
     text-align: center;
-    width: max-content;
+    width: 20%;
 }
 
-.login-container input{
+.login-container input {
     display: block;
-    width: 80%;
     box-sizing: border-box;
-    padding: .5rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid var(--light-grey);
-    border-radius: .3rem;
+    border-radius: 0.3rem;
+    width: 80%;
 }
 
-.login-container button{
+.login-container .dark-btn {
     display: block;
     width: 80%;
 }
 
-.login-container .form{
+.login-container .form {
     text-align: left;
 }
 
-.dark-btn{
+.dark-btn {
     background-color: var(--black);
     color: var(--white);
     margin-bottom: 1rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 2rem;
     font-weight: bold;
 }
 
-.login-container a{
+.login-container a {
     text-decoration: none;
     color: var(--blue);
+}
+
+.login-container .password {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.show-btn {
+    display: inline-block ;
+    border: none;
+    background-color: var(--white);
 }

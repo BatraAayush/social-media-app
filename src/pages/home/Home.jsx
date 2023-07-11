@@ -10,7 +10,7 @@ import { BiTimeFive } from "react-icons/bi";
 import Spinner from "../../components/spinner/Spinner";
 
 const Home = () => {
-    let { homePosts, getHomePosts, posts, postsLoading, usersLoading } = usePostContext();
+    let { homePosts, getHomePosts, posts, postsLoading } = usePostContext();
     const {
         setFilterBy,
         filterBy,
