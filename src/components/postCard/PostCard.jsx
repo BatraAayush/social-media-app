@@ -26,7 +26,16 @@ export const PostCard = ({ post, details }) => {
         bookmarks,
     } = usePostContext();
     const { users, followHandler, unFollowHandler } = useUserContext();
-    useEffect(() => {}, [userDetails]);
+    const [user, setUser] = useState({});
+
+    const fetchData = () => {
+        const userx =users.find(({username}) => username === post.username);
+        setUser(userx);
+    }
+    useEffect(() => {
+        console.log(users);
+        fetchData();
+    }, [users]);
     const likedBy = post?.likes?.likedBy?.find(
         ({ username }) => username === userDetails.username
     );
@@ -63,8 +72,6 @@ export const PostCard = ({ post, details }) => {
     };
 
     const bookmarkedBy = bookmarks.find((post) => post._id === _id);
-
-    const user = users.find((user) => user.username === post.username);
 
     const followersWithUsername = user?.followers?.map(
         ({ username }) => username

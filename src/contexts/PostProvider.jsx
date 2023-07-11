@@ -269,7 +269,6 @@ export const PostProvider = ({ children }) => {
                 const bookmarkedPosts = state.posts.filter(({ _id }) =>
                     bookmarks.includes(_id)
                 );
-                console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
                 bookmarkAlert();
             }
@@ -291,7 +290,6 @@ export const PostProvider = ({ children }) => {
                 const bookmarkedPosts = state.posts.filter(({ _id }) =>
                     bookmarks.includes(_id)
                 );
-                console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
                 unbookmarkAlert();
             }
@@ -311,7 +309,6 @@ export const PostProvider = ({ children }) => {
                 const bookmarkedPosts = state.posts.filter(({ _id }) =>
                     bookmarks.includes(_id)
                 );
-                console.log(bookmarkedPosts);
                 dispatch({ type: "setBookmarks", payload: bookmarkedPosts });
             }
         } catch (e) {

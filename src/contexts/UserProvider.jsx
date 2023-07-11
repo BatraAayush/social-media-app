@@ -132,6 +132,7 @@ export const UserProvider = ({ children }) => {
                 const { user } = await res.json();
                 dispatch({ type: "setUser", payload: user });
                 dispatchLogin({ type: "setUserDetails", payload: user });
+                fetchUsers();
                 editUserAlert();
             }
         } catch (e) {
