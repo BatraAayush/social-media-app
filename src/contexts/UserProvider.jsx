@@ -159,6 +159,7 @@ export const UserProvider = ({ children }) => {
                 const { user, followUser } = response;
                 dispatchLogin({ type: "setUserDetails", payload: user });
                 dispatch({ type: "setUser", payload: followUser });
+                fetchUsers();
                 followAlert(followUser.username);
             }
         } catch (e) {
@@ -180,6 +181,7 @@ export const UserProvider = ({ children }) => {
                 const { user, followUser } = response;
                 dispatch({ type: "setUser", payload: followUser });
                 dispatchLogin({ type: "setUserDetails", payload: user });
+                fetchUsers();
                 unfollowAlert(followUser.username);
             }
         } catch (e) {

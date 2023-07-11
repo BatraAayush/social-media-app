@@ -47,7 +47,7 @@ export const posts = [
         mediaURL:
             "https://media.istockphoto.com/id/1272773180/photo/one-young-woman-making-a-selfie-for-social-media-at-the-gym.jpg?s=612x612&w=0&k=20&c=Pbf8XltWkf0bVk8a8zcK_9i-8vDYXnG5pmSI7KiCGrM=",
         likes: {
-            likeCount: 0,
+            likeCount: 30,
             likedBy: [],
             dislikedBy: [],
         },

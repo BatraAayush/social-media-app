@@ -33,9 +33,8 @@ export const PostCard = ({ post, details }) => {
         setUser(userx);
     }
     useEffect(() => {
-        console.log(users);
         fetchData();
-    }, [users]);
+    }, [users, post, userDetails]);
     const likedBy = post?.likes?.likedBy?.find(
         ({ username }) => username === userDetails.username
     );
