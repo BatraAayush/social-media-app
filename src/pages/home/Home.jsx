@@ -15,13 +15,19 @@ const Home = () => {
         setFilterBy,
         filterBy,
         textInputHandler,
-        imageInputHandler,
+        imageInput,
         createPost,
+        fileInputHandler,
+        handleSubmit,
+        uploading,
+        textInput
     } = usePostContext();
     const [filterDialogue, setFilterDialogue] = useState(false);
     useEffect(() => {
         getHomePosts();
-    }, [posts]);
+    }, [posts, uploading, imageInput]);
+    console.log(imageInput)
+
     return (
         <div className="main-layout">
             <Navigation />
@@ -33,14 +39,14 @@ const Home = () => {
                         className="text-input"
                         placeholder="Whats happening...?"
                         type="text"
+                        value={textInput}
                     />
+                    {imageInput && <img className="create-post-img" src={imageInput} alt="post-img"/>}
+                    {uploading && <strong>uploading...</strong>}
                     <div className="container-2">
-                        <input
-                            onChange={(e) => imageInputHandler(e)}
-                            placeholder="image url"
-                            type="text"
-                        />
-                        <button className="dark-btn" onClick={createPost}>
+                        <input type="file" onChange={fileInputHandler} />
+                        <button className="dark-btn" onClick={handleSubmit}>Upload</button>
+                        <button style={{backgroundColor: "rgb(29, 155, 240)"}} className="dark-btn" onClick={createPost} >
                             Post
                         </button>
                     </div>

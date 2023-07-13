@@ -5,7 +5,30 @@ import { usePostContext } from "../../contexts/PostProvider";
 const EditBox = ({ post, setEditBox, setShowOptions }) => {
     const [inputValue, setInputValue] = useState(post.content);
     const [imgSrc, setImgSrc] = useState(post.mediaURL);
+    const [uploading, setUploading] = useState(false);
+    const [image, setImage] = useState("");
     const { editHandler } = usePostContext();
+    const uploadImg = async() => {
+        setUploading(true);
+        const data = new FormData();
+        data.append("file", image);
+        data.append("upload_preset", "chitchatnew");
+        data.append("cloud_name", "dbzcsalbk");
+        data.append("folder", "chitchat/create-post");
+
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dbzcsalbk/image/upload",
+            {
+                method: "POST",
+                body: data,
+            }
+        );
+        if (res.status === 200) {
+            const { url } = await res.json();
+            setImgSrc(url);
+        }
+        setUploading(false);
+    }
     return (
         <div className="edit-box">
             <h2>Edit Post</h2>
@@ -18,14 +41,14 @@ const EditBox = ({ post, setEditBox, setShowOptions }) => {
                 }}
             />
             {imgSrc !== "" && <img src={imgSrc} alt="enter correct url"></img>}
-            <label>Image Source: </label>
+            {uploading   && <div><strong>Uploading...</strong></div>}
             <input
-                type="text"
-                value={imgSrc}
+                type="file"
                 onChange={(e) => {
-                    setImgSrc(e.target.value);
+                    setImage(e.target.files[0]);
                 }}
             />
+            <button id="upload-btn" className="dark-btn" onClick={uploadImg}>Upload</button>
             <div className="buttons">
                 <button
                     className="dark-btn"

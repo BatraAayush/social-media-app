@@ -67,7 +67,6 @@
 }
 
 .home .dark-btn{
-    background-color: var(--blue);
     border: none;
     margin: 1rem 0 0 0;
 }
@@ -78,4 +77,9 @@
     box-sizing: border-box;
     margin-top: 1rem;
     border-radius: .5rem;
+}
+
+.home .create-post-img{
+    width: 20rem;
+    height: 20rem;
 }

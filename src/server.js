@@ -87,6 +87,10 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      // to allow cloudinary route
+      this.passthrough(
+        "https://api.cloudinary.com/v1_1/dbzcsalbk/image/upload"
+      );
     },
   });
 }

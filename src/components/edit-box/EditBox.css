@@ -9,6 +9,10 @@
     right: 40%;
 }
 
+#upload-btn{
+    margin-left: 1rem;
+}
+
 .edit-box h2{
     text-align: left;
     margin: 0;

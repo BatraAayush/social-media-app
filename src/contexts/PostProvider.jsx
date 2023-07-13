@@ -3,7 +3,6 @@ import { v4 as uuid } from "uuid";
 import { formatDate } from "../backend/utils/authUtils";
 import { useLoginContext } from "./LoginProvider";
 import { toast } from "react-toastify";
-import { act } from "react-dom/test-utils";
 
 const PostContext = createContext();
 
@@ -69,6 +68,12 @@ const postReducer = (state, action) => {
         case "setBookmarks": {
             return { ...state, bookmarks: action.payload };
         }
+        case "fileInputHandler": {
+            return { ...state, fileInput: action.payload };
+        }
+        case "setUploading": {
+            return { ...state, uploading: action.payload };
+        }
         default:
             return state;
     }
@@ -83,12 +88,14 @@ export const PostProvider = ({ children }) => {
         post: {},
         homePosts: [],
         filterBy: "latest",
-        imageInput: "",
+        imageInput: false,
         textInput: "",
         liked: false,
         bookmarks: [],
         postsLoading: true,
-        postLoading: true
+        postLoading: true,
+        fileInput: "",
+        uploading: false,
     });
 
     const fetchPostsData = async () => {
@@ -159,9 +166,32 @@ export const PostProvider = ({ children }) => {
     const textInputHandler = (e) => {
         dispatch({ type: "textInputHandler", payload: e.target.value });
     };
-    const imageInputHandler = (e) => {
-        dispatch({ type: "imageInputHandler", payload: e.target.value });
+
+    const fileInputHandler = (e) => {
+        dispatch({ type: "fileInputHandler", payload: e.target.files[0] });
     };
+    const handleSubmit = async () => {
+        dispatch({ type: "setUploading", payload: true });
+        const data = new FormData();
+        data.append("file", state.fileInput);
+        data.append("upload_preset", "chitchatnew");
+        data.append("cloud_name", "dbzcsalbk");
+        data.append("folder", "chitchat/create-post");
+
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dbzcsalbk/image/upload",
+            {
+                method: "POST",
+                body: data,
+            }
+        );
+        if (res.status === 200) {
+            const { url } = await res.json();
+            dispatch({ type: "imageInputHandler", payload: url });
+        }
+        dispatch({ type: "setUploading", payload: false });
+    };
+
     const createPost = async () => {
         try {
             const postData = {
@@ -194,6 +224,8 @@ export const PostProvider = ({ children }) => {
 
                 createdPostAlert();
             }
+            dispatch({ type: "imageInputHandler", payload: false });
+            dispatch({ type: "textInputHandler", payload: "" });
         } catch (e) {
             console.log(e);
         }
@@ -209,7 +241,7 @@ export const PostProvider = ({ children }) => {
             }
         } catch (e) {
             console.log(e);
-        } finally{
+        } finally {
             dispatch({ type: "setPostLoading", payload: false });
         }
     };
@@ -245,6 +277,7 @@ export const PostProvider = ({ children }) => {
                 dispatch({ type: "setFilterBy", payload: "latest" });
                 editPostAlert();
             }
+            dispatch({ type: "imageInputHandler", payload: false });
         } catch (e) {
             console.log(e);
         }
@@ -323,7 +356,6 @@ export const PostProvider = ({ children }) => {
                 setFilterBy,
                 filterBy: state.filterBy,
                 textInputHandler,
-                imageInputHandler,
                 createPost,
                 deleteHandler,
                 editHandler,
@@ -337,7 +369,12 @@ export const PostProvider = ({ children }) => {
                 bookmarks: state.bookmarks,
                 getBookmarkedPosts,
                 postsLoading: state.postsLoading,
-                postLoading: state.postLoading
+                postLoading: state.postLoading,
+                fileInputHandler,
+                handleSubmit,
+                imageInput: state.imageInput,
+                textInput: state.textInput,
+                uploading: state.uploading,
             }}
         >
             {children}
