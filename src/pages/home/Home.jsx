@@ -26,7 +26,6 @@ const Home = () => {
     useEffect(() => {
         getHomePosts();
     }, [posts, uploading, imageInput]);
-    console.log(imageInput)
 
     return (
         <div className="main-layout">

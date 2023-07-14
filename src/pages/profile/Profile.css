@@ -106,3 +106,20 @@
     background-color: var(--light-grey);
     content: "NA";
 }
+
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+    .profile-box{
+        margin: 0;
+        width: 60%;
+        margin-right: 10rem;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 880px) {
+    .profile-box{
+        width: 95%;
+        margin:0;
+    }
+}

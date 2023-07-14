@@ -10,6 +10,7 @@ import { RequiresAuth } from "./components/RequiresAuth";
 import Post from "./pages/post/Post";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Search from "./components/search/Search";
 
 function App() {
     return (
@@ -31,6 +32,12 @@ function App() {
                     path="/explore"
                     element=<RequiresAuth>
                         <Explore />
+                    </RequiresAuth>
+                />
+                <Route
+                    path="/search"
+                    element=<RequiresAuth>
+                        <Search />
                     </RequiresAuth>
                 />
                 <Route path="/login" element=<Login /> />

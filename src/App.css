@@ -56,7 +56,7 @@ p{
 }
 
 /* Styles for mobile devices */
-@media (max-width: 786px) {
+@media (max-width: 880px) {
     h1{
         font-size: 2rem;
     }
@@ -65,5 +65,9 @@ p{
     }
     p{
         font-size: 1rem;
+    }
+
+    .main-layout{
+        display: block;
     }
 }

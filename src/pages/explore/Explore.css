@@ -6,3 +6,20 @@
 .explore h2{
     text-align: center;
 }
+
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+    .explore{
+        margin: 0;
+        width: 60%;
+        margin-right: 10rem;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 880px) {
+    .explore{
+        width: 95%;
+        margin:0;
+    }
+}

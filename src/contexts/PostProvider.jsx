@@ -82,6 +82,9 @@ export const PostProvider = ({ children }) => {
     const createdPostAlert = () => {
         toast("Created Post");
     };
+    const fillInput = () => {
+        toast("Please fill text input");
+    };
     const { userDetails } = useLoginContext();
     const [state, dispatch] = useReducer(postReducer, {
         posts: [],
@@ -136,7 +139,6 @@ export const PostProvider = ({ children }) => {
             if (res.status === 201) {
                 const { posts } = await res.json();
                 dispatch({ type: "setPosts", payload: posts });
-                // dispatch({ type: "setHomePosts", payload: userDetails });
             }
         } catch (e) {
             console.log(e);
@@ -194,38 +196,44 @@ export const PostProvider = ({ children }) => {
 
     const createPost = async () => {
         try {
-            const postData = {
-                _id: uuid(),
-                content: state.textInput,
-                mediaURL: state.imageInput,
-                likes: {
-                    likeCount: 0,
-                    likedBy: [],
-                    dislikedBy: [],
-                },
-                comments: [],
-                username: userDetails.username,
-                createdAt: formatDate(),
-                updatedAt: formatDate(),
-                follow: true,
-            };
-            const res = await fetch(`/api/posts`, {
-                method: "POST",
-                body: JSON.stringify({ postData }),
-                headers: {
-                    authorization: `${localStorage.getItem("encodedToken")}`,
-                },
-            });
+            if (state.textInput === "") {
+                fillInput();
+            } else {
+                const postData = {
+                    _id: uuid(),
+                    content: state.textInput,
+                    mediaURL: state.imageInput,
+                    likes: {
+                        likeCount: 0,
+                        likedBy: [],
+                        dislikedBy: [],
+                    },
+                    comments: [],
+                    username: userDetails.username,
+                    createdAt: formatDate(),
+                    updatedAt: formatDate(),
+                    follow: true,
+                };
+                const res = await fetch(`/api/posts`, {
+                    method: "POST",
+                    body: JSON.stringify({ postData }),
+                    headers: {
+                        authorization: `${localStorage.getItem(
+                            "encodedToken"
+                        )}`,
+                    },
+                });
 
-            if (res.status === 201) {
-                const { posts } = await res.json();
-                dispatch({ type: "setPosts", payload: posts });
-                dispatch({ type: "setFilterBy", payload: "latest" });
+                if (res.status === 201) {
+                    const { posts } = await res.json();
+                    dispatch({ type: "setPosts", payload: posts });
+                    dispatch({ type: "setFilterBy", payload: "latest" });
 
-                createdPostAlert();
+                    createdPostAlert();
+                }
+                dispatch({ type: "imageInputHandler", payload: false });
+                dispatch({ type: "textInputHandler", payload: "" });
             }
-            dispatch({ type: "imageInputHandler", payload: false });
-            dispatch({ type: "textInputHandler", payload: "" });
         } catch (e) {
             console.log(e);
         }

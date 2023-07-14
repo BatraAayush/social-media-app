@@ -83,3 +83,21 @@
     width: 20rem;
     height: 20rem;
 }
+
+
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+    .home{
+        margin: 0;
+        width: 60%;
+        margin-right: 10rem;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 880px) {
+    .home{
+        width: 95%;
+        margin:0;
+    }
+}

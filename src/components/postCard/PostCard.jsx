@@ -76,7 +76,6 @@ export const PostCard = ({ post, details }) => {
         ({ username }) => username
     );
     const followed = followersWithUsername?.includes(userDetails?.username);
-
     return (
         <div
             style={{ border: details ? "none" : "1px solid #dae2e6" }}
@@ -157,7 +156,7 @@ export const PostCard = ({ post, details }) => {
             </p>
             <Link to={`/post/${_id}`}>
                 <p>{content}</p>
-                {mediaURL !== "" && (
+                {(mediaURL) && (
                     <img
                         className="post-img"
                         src={mediaURL}

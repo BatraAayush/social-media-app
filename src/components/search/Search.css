@@ -1,67 +1,84 @@
-.profile-pic{
+.profile-pic {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
 }
-.search{
+.search {
     width: 30%;
 }
-.search-section{
+.search-section {
     position: fixed;
     top: 0;
     padding-top: 1rem;
 }
 
-.search-section .user{
+.search-section .user {
     width: 20rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 1rem;
-
 }
 
-.search-section .username{
-    width: 7rem
+.search-section .username {
+    width: 7rem;
 }
 
-.search-section .container-1{
+.search-section .container-1 {
     display: flex;
-    gap:1rem
+    gap: 1rem;
 }
 
-.search-section input{
+.search-section input {
     background-color: var(--greyBg);
     border: none;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     width: 80%;
     border-radius: 2rem;
-
 }
 
-.search-icon{
+.search-icon {
     position: relative;
-    left: .8rem;
+    left: 0.8rem;
     top: 1.7rem;
     color: #757579;
 }
 
-.suggested-users{
+.suggested-users {
     background-color: var(--greyBg);
     padding: 1rem;
-    margin-top: 2rem ;
+    margin-top: 2rem;
     border-radius: 2rem;
 }
 
-.suggested-users{
+.suggested-users {
     background-color: var(--greyBg);
     padding: 1rem;
-    margin-top: 2rem ;
+    margin-top: 2rem;
     border-radius: 2rem;
 }
 
-
-a{
+a {
     color: var(--black);
     text-decoration: none;
+}
+
+.mobile-search{
+    display: none;
+}
+
+ 
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+    .search{
+        display: none;
+    }
+    .mobile-search{
+        display: block;
+        width: 60%;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 880px) {
 }

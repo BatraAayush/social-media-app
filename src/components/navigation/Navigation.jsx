@@ -5,6 +5,7 @@ import { useLoginContext } from "../../contexts/LoginProvider";
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineExplore } from "react-icons/md";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Navigation = () => {
     const { userDetails, logoutHandler } = useLoginContext();
@@ -38,6 +39,14 @@ const Navigation = () => {
                         to="/bookmarks"
                     >
                         <BsFillBookmarkFill /> Bookmarks
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            isActive ? "active nav-link mobile" : "inactive nav-link mobile"
+                        }
+                        to="/search"
+                    >
+                        <AiOutlineSearch /> Search
                     </NavLink>
                     <button className="dark-btn" onClick={logoutHandler}>
                         Logout
