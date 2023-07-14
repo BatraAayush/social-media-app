@@ -30,3 +30,40 @@
     background-color: rgb(97, 97, 98, 0.5);
     padding-top: 30%;
 }
+
+/* Styles for laptops and up */
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2rem;
+}
+p{
+    font-size: 1.25rem;
+}
+
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+    h1{
+        font-size: 2.5rem;
+    }
+    h2{
+        font-size: 1.75rem;
+    }
+    p{
+        font-size: 1.125rem;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 786px) {
+    h1{
+        font-size: 2rem;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./AvatarSelection.css";
 import { useUserContext } from "../../contexts/UserProvider";
 

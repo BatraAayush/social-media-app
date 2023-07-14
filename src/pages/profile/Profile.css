@@ -101,3 +101,8 @@
     background-color: var(--light-grey);
     content: "NA";
 }
+
+.profile-box .updated-profile{
+    background-color: var(--light-grey);
+    content: "NA";
+}

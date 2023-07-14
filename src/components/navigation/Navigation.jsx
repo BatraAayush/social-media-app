@@ -13,6 +13,7 @@ const Navigation = () => {
         <div>
             <div className="navigation">
                 <div className="container-1">
+                    <div className="page-nav-container">
                     <h2>Chit Chat</h2>
                     <NavLink
                         className={({ isActive }) =>
@@ -41,20 +42,32 @@ const Navigation = () => {
                     <button className="dark-btn" onClick={logoutHandler}>
                         Logout
                     </button>
-                </div>
-                <div>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive ? "active profile" : "profile"
-                        }
-                        to={`/profile/${userDetails._id}`}
-                    >   
-                        <div><img className="profile-pic" src={userDetails.avatarUrl} alt="profile-pic"/></div>
-                        <div>
-                            <div className="name">{userDetails.firstName} {userDetails.lastName}</div>
-                            <div className="username">@{userDetails.username}</div>
-                        </div>
-                    </NavLink>
+                    </div>
+                    <div>
+                        <NavLink
+                            className={({ isActive }) =>
+                                isActive ? "active profile" : "profile"
+                            }
+                            to={`/profile/${userDetails._id}`}
+                        >
+                            <div>
+                                <img
+                                    className="profile-pic"
+                                    src={userDetails.avatarUrl}
+                                    alt="profile-pic"
+                                />
+                            </div>
+                            <div>
+                                <div className="name">
+                                    {userDetails.firstName}{" "}
+                                    {userDetails.lastName}
+                                </div>
+                                <div className="username">
+                                    @{userDetails.username}
+                                </div>
+                            </div>
+                        </NavLink>
+                    </div>
                 </div>
             </div>
         </div>

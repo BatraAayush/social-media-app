@@ -32,7 +32,7 @@ const Profile = () => {
         getUserPosts,
         userPosts,
         profileLoading,
-        selectedAvatar
+        selectedAvatar,
     } = useUserContext();
     useEffect(() => {
         getUser(profileId);
@@ -64,7 +64,34 @@ const Profile = () => {
         website: userDetails.website,
     });
     const followed = followersWithUsername?.includes(userDetails?.username);
+    const [image, setImage] = useState("");
+    const [uploading, setUploading] = useState(false);
+    const uploadImage = async () => {
+        setUploading(true);
+        const data = new FormData();
+        data.append("file", image);
+        data.append("upload_preset", "chitchatnew");
+        data.append("cloud_name", "dbzcsalbk");
+        data.append("folder", "chitchat/create-post");
 
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dbzcsalbk/image/upload",
+            {
+                method: "POST",
+                body: data,
+            }
+        );
+        if (res.status === 200) {
+            const { url } = await res.json();
+            setNewUserDetails({
+                ...newUserDetails,
+                avatarUrl:
+                    url,
+            });
+        }
+        setUploading(false);
+        
+    };
     return (
         <div className="main-layout">
             <Navigation />
@@ -179,6 +206,7 @@ const Profile = () => {
                                                 Save
                                             </button>
                                         </div>
+                                        <img className="profile-pic big" src={newUserDetails.avatarUrl} alt="profile-pic"/>
                                         <div className="field">
                                             <label>First Name </label>
                                             <input
@@ -244,20 +272,31 @@ const Profile = () => {
                                         <div className="field">
                                             <label>Profile URL </label>
                                             <input
-                                                disabled ={selectedAvatar !== ""}
-                                                className={selectedAvatar !== "" ? "disable" : ""}
+                                                disabled={selectedAvatar !== ""}
+                                                className={
+                                                    selectedAvatar !== ""
+                                                        ? "disable"
+                                                        : ""
+                                                }
                                                 onChange={(e) =>
-                                                    setNewUserDetails({
-                                                        ...newUserDetails,
-                                                        avatarUrl:
-                                                            e.target.value,
-                                                    })
+                                                    setImage(e.target.files[0])
                                                 }
-                                                defaultValue={
-                                                    newUserDetails.avatarUrl
-                                                }
-                                                type="text"
+                                                type="file"
                                             />
+                                            <button
+                                            className="dark-btn"
+                                                onClick={() => {
+                                                    uploadImage();
+                                                    // setNewUserDetails({
+                                                    //     ...newUserDetails,
+                                                    //     avatarUrl:
+                                                    //         imgSrc,
+                                                    // });
+                                                }}
+                                            >
+                                                Upload
+                                            </button>
+                                            {uploading && <strong> Uploading...</strong>}
                                         </div>
                                         <div className="field">
                                             <AvatarSelection />
