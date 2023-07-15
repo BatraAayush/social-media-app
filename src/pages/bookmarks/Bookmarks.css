@@ -3,6 +3,10 @@
     margin-left: 10rem;
 }
 
+.bookmarks h2{
+    text-align: center;
+}
+
 /* Styles for tablets (portrait) and up */
 @media (max-width: 1200px) {
     .bookmarks{
@@ -16,6 +20,6 @@
 @media (max-width: 880px) {
     .bookmarks{
         width: 95%;
-        margin:0;
+        margin:0 .5rem;
     }
 }

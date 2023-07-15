@@ -118,8 +118,5 @@
 
 /* Styles for mobile devices */
 @media (max-width: 880px) {
-    .profile-box{
-        width: 95%;
-        margin:0;
-    }
+
 }

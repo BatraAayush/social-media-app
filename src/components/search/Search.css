@@ -81,4 +81,7 @@ a {
 
 /* Styles for mobile devices */
 @media (max-width: 880px) {
+    .search{
+        width: 92%;
+    }
 }

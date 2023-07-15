@@ -15,14 +15,14 @@ const Navigation = () => {
             <div className="navigation">
                 <div className="container-1">
                     <div className="page-nav-container">
-                    <h2>Chit Chat</h2>
+                    <h2 className="desktop">Chit Chat</h2>
                     <NavLink
                         className={({ isActive }) =>
                             isActive ? "active nav-link" : "inactive nav-link"
                         }
                         to="/"
                     >
-                        <AiFillHome /> Home
+                        <AiFillHome className="icon"/> <span className="desktop">Home</span>
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
@@ -30,7 +30,7 @@ const Navigation = () => {
                         }
                         to="/explore"
                     >
-                        <MdOutlineExplore /> Explore
+                        <MdOutlineExplore className="icon"/> <span className="desktop">Explore</span>
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
@@ -38,7 +38,7 @@ const Navigation = () => {
                         }
                         to="/bookmarks"
                     >
-                        <BsFillBookmarkFill /> Bookmarks
+                        <BsFillBookmarkFill className="icon"/> <span className="desktop">Bookmarks</span>
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
@@ -46,9 +46,9 @@ const Navigation = () => {
                         }
                         to="/search"
                     >
-                        <AiOutlineSearch /> Search
+                        <AiOutlineSearch className="icon"/> <span className="desktop">Search</span>
                     </NavLink>
-                    <button className="dark-btn" onClick={logoutHandler}>
+                    <button className="dark-btn " onClick={logoutHandler}>
                         Logout
                     </button>
                     </div>
@@ -66,7 +66,7 @@ const Navigation = () => {
                                     alt="profile-pic"
                                 />
                             </div>
-                            <div>
+                            <div className="desktop">
                                 <div className="name">
                                     {userDetails.firstName}{" "}
                                     {userDetails.lastName}

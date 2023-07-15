@@ -64,7 +64,33 @@
 
 /* Styles for mobile devices */
 @media (max-width: 880px) {
-    .navigation{
+    .navigation .container-1 {
+        flex-direction: row;
+        bottom: 0;
+        height: min-content;
+        background-color: rgba(239, 243, 244, .7);
+        width: 100vw;
+        z-index: 2;
+    }
+
+    .navigation .page-nav-container{
+        flex-direction: row;
+    }
+    .navigation .desktop{
         display: none;
+    }
+    .icon{
+        font-size: x-large;
+    }
+    .navigation .nav-link {
+        padding-bottom: 0;
+        padding-left: 1rem;
+    }
+    .navigation .profile{
+        width: min-content;
+        margin-right: 1rem;
+    }
+    .navigation .dark-btn{
+        margin-left: 1rem;
     }
 }
