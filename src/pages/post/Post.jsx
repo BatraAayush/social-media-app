@@ -9,10 +9,10 @@ import Spinner from "../../components/spinner/Spinner";
 
 const Post = () => {
     const { postId } = useParams();
-    const {getPost, post, postLoading} = usePostContext();
+    const {getPost, post, postLoading, posts} = usePostContext();
     useEffect(() => {
       getPost(postId);
-    },[])
+    },[posts])
     return (
         <div className="main-layout">
             <Navigation />

@@ -40,7 +40,7 @@ const Search = () => {
     }
     return (
         <>
-            {(pathX === "/" || pathX === "/explore" || pathX === "/bookmarks" || pathX === "/profile") && (
+            {(pathX === "/" || pathX === "/explore" || pathX === "/bookmarks" || pathX === "/profile" || pathX === "/post") && (
                 <>
                     <div className="search">
                         <div className="search-section">
