@@ -2,6 +2,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    object-fit: cover;
 }
 .search {
     width: 30%;
@@ -13,7 +14,8 @@
 }
 
 .search-section .user {
-    width: 20rem;
+    max-width: 20rem;
+    width: 70vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

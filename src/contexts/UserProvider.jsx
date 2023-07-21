@@ -98,6 +98,7 @@ export const UserProvider = ({ children }) => {
     };
     const getUser = async (id) => {
         try {
+            dispatch({ type: "setProfileLoading", payload: true });
             const res = await fetch(`/api/users/${id}`);
             if (res.status === 200) {
                 const { user } = await res.json();
@@ -116,7 +117,7 @@ export const UserProvider = ({ children }) => {
     };
     const editProfileHandler = async (newUserDetails) => {
         try {
-            if(state.selectedAvatar != ""){
+            if(state.selectedAvatar !== ""){
                 newUserDetails = {...newUserDetails, avatarUrl: state.selectedAvatar};
             }
             const res = await fetch(`/api/users/edit`, {

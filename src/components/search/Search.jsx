@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "../../contexts/UserProvider";
 import "./Search.css";
 import { useLoginContext } from "../../contexts/LoginProvider";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import Navigation from "../navigation/Navigation";
 

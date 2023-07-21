@@ -19,6 +19,7 @@
     margin: 1rem auto;
     display: block;
     border-radius: .5rem;
+    object-fit: contain;
 }
 
 .comment{
