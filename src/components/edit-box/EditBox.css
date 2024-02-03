@@ -1,46 +1,75 @@
-.edit-box{
-    position: fixed;
-    z-index: 2;
-    background-color: var(--white);
-    box-shadow: 0 3px 10px var(--black);
-    border-radius: .5rem;
-    padding: 1rem .5rem;
-    top: 10%;
-    right: 40%;
+.edit-box {
+  position: fixed;
+  z-index: 2;
+  background-color: var(--white);
+  box-shadow: 0 3px 10px var(--black);
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  top: 10%;
+  left: 30%;
+  width: fit-content;
+  height: fit-content;
 }
-
+/* 
 #upload-btn{
-    margin-left: 1rem;
+    margin-left: 0.1rem;
+} */
+
+.edit-box h2 {
+  text-align: left;
+  margin: 0;
 }
 
-.edit-box h2{
-    text-align: left;
-    margin: 0;
+.edit-box .content {
+  display: inline-block;
+  width: 95%;
+  height: max-content;
+  border: none;
 }
 
-
-
-.edit-box .content{
-    display: inline-block;
-    width: 100%;
-    height: max-content;
-    border: none;
+.edit-box img {
+  display: inline-block;
+  width: 20rem;
+  height: 20rem;
+  border: none;
+  margin: 1rem 0;
+  display: block;
 }
 
-.edit-box img{
-    display: inline-block;
-    width: 20rem;
-    height: 20rem;
-    border: none;
-    margin-top: 1rem;
-    display: block;
+.edit-box .buttons .dark-btn {
+  background-color: var(--black);
+  margin: 1rem;
 }
 
-.edit-box .buttons .dark-btn{
-    background-color: var(--black);
+.edit-box .buttons {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.edit-box .buttons{
-    display: flex;
-    justify-content: space-between;
+/* Styles for tablets (portrait) and up */
+@media (max-width: 1200px) {
+  .edit-box {
+    left: 40%;
+  }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 880px) {
+  .edit-box {
+    left: 25%;
+  }
+
+  .edit-box img {
+    width: 10rem;
+    height: 10rem;
+  }
+  .edit-box input {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .edit-box {
+    left: 10%;
+  }
 }

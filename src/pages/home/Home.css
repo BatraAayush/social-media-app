@@ -35,9 +35,10 @@
 
 .home .container-2{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-between;
     margin-bottom: 2rem;
 }
+
 
 .home .filter-box{
     position: absolute;
@@ -68,7 +69,7 @@
 
 .home .dark-btn{
     border: none;
-    margin: 1rem 0 0 0;
+    margin: 1rem;
 }
 
 .home input{
