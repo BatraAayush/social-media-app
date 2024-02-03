@@ -49,7 +49,7 @@ const Home = () => {
                     )}
                     {uploading && <strong>uploading...</strong>}
                     <div className="container-2">
-                        <input type="file" onChange={fileInputHandler} />
+                        <input className="file-input" type="file" onChange={fileInputHandler} />
                         <button className="dark-btn" onClick={handleSubmit}>
                             Upload
                         </button>

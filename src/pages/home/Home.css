@@ -101,4 +101,8 @@
         width: 95%;
         margin:0 .5rem;
     }
+
+    .home .file-input{
+        width: 8rem;
+    }
 }
