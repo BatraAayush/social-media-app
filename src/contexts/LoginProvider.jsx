@@ -85,8 +85,8 @@ export const LoginProvider = ({ children }) => {
             let loginDetails = {};
             if (type === "test") {
                 loginDetails = {
-                    username: "aayushbatra",
-                    password: "aayushbatra123",
+                    username: "johndoe",
+                    password: "johndoe123",
                 };
             } else {
                 loginDetails = {

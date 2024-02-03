@@ -38,6 +38,9 @@
 .profile-box .big {
     width: 7rem;
     height: 7rem;
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
 }
 
 .edit-section {
@@ -95,6 +98,11 @@
 
 .profile-box .user-details >*{
     margin-bottom: .5rem;
+}
+
+.follower:hover{
+    cursor: pointer;
+    font-weight: 500;
 }
 
 .profile-box .disable{

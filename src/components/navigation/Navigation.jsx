@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 import { useLoginContext } from "../../contexts/LoginProvider";
-import { AiFillHome } from "react-icons/ai";
+import { BiHomeAlt2 } from "react-icons/bi";
 import { MdOutlineExplore } from "react-icons/md";
-import { BsFillBookmarkFill } from "react-icons/bs";
+import { BsBookmark } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const Navigation = () => {
@@ -22,7 +22,7 @@ const Navigation = () => {
                         }
                         to="/"
                     >
-                        <AiFillHome className="icon"/> <span className="desktop">Home</span>
+                        <BiHomeAlt2 className="icon"/> <span className="desktop">Home</span>
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
@@ -38,7 +38,7 @@ const Navigation = () => {
                         }
                         to="/bookmarks"
                     >
-                        <BsFillBookmarkFill className="icon"/> <span className="desktop">Bookmarks</span>
+                        <BsBookmark className="icon"/> <span className="desktop">Bookmarks</span>
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>

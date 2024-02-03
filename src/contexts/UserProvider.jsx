@@ -61,11 +61,11 @@ export const UserProvider = ({ children }) => {
         selectedAvatar: "",
     });
     const handleAvatarSelect = (avatar) => {
-        if (state.selectedAvatar === avatar) {
-            dispatch({type:"setSelectedAvatar", payload:""});
-        } else {
+        // if (state.selectedAvatar === avatar) {
+        //     dispatch({type:"setSelectedAvatar", payload:""});
+        // } else {
             dispatch({type:"setSelectedAvatar", payload:avatar});
-        }
+        // }
     };
     const fetchUsers = async () => {
         try {

@@ -4,10 +4,10 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
     {
         _id: "t7cZfWIq-a",
-        firstName: "Aayush",
-        lastName: "Batra",
-        username: "aayushbatra",
-        password: "aayushbatra123",
+        firstName: "John",
+        lastName: "Doe",
+        username: "johndoe",
+        password: "johndoe123",
         bio: "Frontend Developer",
         bookmarks: [],
         avatarUrl:

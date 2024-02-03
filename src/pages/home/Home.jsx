@@ -20,12 +20,12 @@ const Home = () => {
         fileInputHandler,
         handleSubmit,
         uploading,
-        textInput
+        textInput,
     } = usePostContext();
     const [filterDialogue, setFilterDialogue] = useState(false);
     useEffect(() => {
         getHomePosts();
-    }, [posts, uploading, imageInput]);
+    }, [posts, uploading, imageInput, homePosts]);
 
     return (
         <div className="main-layout">
@@ -40,12 +40,24 @@ const Home = () => {
                         type="text"
                         value={textInput}
                     />
-                    {imageInput && <img className="create-post-img" src={imageInput} alt="post-img"/>}
+                    {imageInput && (
+                        <img
+                            className="create-post-img"
+                            src={imageInput}
+                            alt="post-img"
+                        />
+                    )}
                     {uploading && <strong>uploading...</strong>}
                     <div className="container-2">
                         <input type="file" onChange={fileInputHandler} />
-                        <button className="dark-btn" onClick={handleSubmit}>Upload</button>
-                        <button style={{backgroundColor: "rgb(29, 155, 240)"}} className="dark-btn" onClick={createPost} >
+                        <button className="dark-btn" onClick={handleSubmit}>
+                            Upload
+                        </button>
+                        <button
+                            style={{ backgroundColor: "rgb(29, 155, 240)" }}
+                            className="dark-btn"
+                            onClick={createPost}
+                        >
                             Post
                         </button>
                     </div>
@@ -85,14 +97,19 @@ const Home = () => {
                         </div>
                     )}
                 </div>
-                {
-                    homePosts.map((post) => (
-                    <PostCard key={post.id} post={post} />
-                ))}
+                {(homePosts.length !== 0 )? (
+                    <>
+                        {homePosts.map((post) => (
+                            <PostCard key={post.id} post={post} />
+                        ))}
+                    </>
+                ) : (
+                    <h3>No Posts Yet</h3>
+                )}
             </div>
             <Search />
-            {(postsLoading) && (
-                <div className="loading-div">  
+            {postsLoading && (
+                <div className="loading-div">
                     <Spinner className="spinner" />
                 </div>
             )}
